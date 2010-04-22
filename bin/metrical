@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'json'
+require 'metric_fu'
+
+# Load default configuration
+MetricFu::Configuration.run do |config|
+  config.metrics  = [ :churn, :saikuro, :stats, :flog, :flay, :reek, :roodi, :rcov ]
+  config.graphs   = [ :flog, :flay, :reek, :roodi, :rcov ]
+  config.flay     = { :dirs_to_flay  => ['app', 'lib'], :minimum_score => 100  }
+  config.flog     = { :dirs_to_flog  => ['app', 'lib'] }
+  config.reek     = { :dirs_to_reek  => ['app', 'lib'] }
+  config.roodi    = { :dirs_to_roodi => ['app', 'lib'] }
+
+  config.saikuro  = {
+    :output_directory => 'scratch_directory/saikuro',
+    :input_directory  => ['app', 'lib'],
+    :cyclo            => "",
+    :filter_cyclo     => "0",
+    :warn_cyclo       => "5",
+    :error_cyclo      => "7",
+    :formater         => "text" #this needs to be set to "text"
+  }
+
+  config.churn    = { :start_date => "1 year ago", :minimum_churn_count => 10}
+
+  config.rcov     = {
+    :environment =>   'test',
+    :test_files  => [ 'test/**/*_test.rb', 
+                      'spec/**/*_spec.rb'],
+    :rcov_opts   => [
+                      "--sort coverage",
+                      "--no-html",
+                      "--text-coverage",
+                      "--no-color",
+                      "--profile",
+                      "-Ispec",
+                      "--exclude-only '.*'",
+                      '--include-file "\Aapp,\Alib"'
+                     ]
+  }
+  config.graph_engine = :bluff
+end
+
+# Load local metrics settings
+file = File.join(Dir.pwd, '.metrics')
+load file if File.exist?(file)
+
+# Run metric fu!
+MetricFu::Configuration.run {}
+MetricFu.metrics.each {|metric| MetricFu.report.add(metric) }
+MetricFu.report.save_output(MetricFu.report.to_yaml, MetricFu.base_directory, "report.yml")
+MetricFu.report.save_output(MetricFu.report.to_yaml, MetricFu.data_directory, "#{Time.now.strftime("%Y%m%d")}.yml")
+MetricFu.report.save_templatized_report
+
+MetricFu.graphs.each {|graph| MetricFu.graph.add(graph, MetricFu.graph_engine) }
+MetricFu.graph.generate
+
+if MetricFu.report.open_in_browser?
+  MetricFu.report.show_in_browser(MetricFu.output_directory)
+end
