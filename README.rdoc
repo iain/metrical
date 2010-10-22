@@ -7,17 +7,17 @@ MetricFu is awesome! Metrical strives to make it a little bit easier to get work
 
 * You can run MetricFu in any project:
 
-  gem install metrical
-  cd /path/of/your/project
-  metrical
+    $ gem install metrical
+    $ cd /path/of/your/project
+    $ metrical
 
 * Per project configuration can be done in a simple <tt>.metrics</tt> file in
   the root directory of your project. In here you can configure MetricFu as
   you normally would. Example:
 
-  MetricFu::Configuration.run do
-    config.graph_engine = :gchart
-  end
+    MetricFu::Configuration.run do
+      config.graph_engine = :gchart
+    end
 
 And that's all there is too it. If you have any suggestions, ideas or bug fixes,
 please drop me a line, or make a github issue.
