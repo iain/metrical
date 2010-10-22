@@ -1,18 +1,27 @@
 = Metrical
 
-MetricFu is awesome! Metrical fixes some tiny issues I have with it.
+MetricFu is awesome! Metrical strives to make it a little bit easier to get working.
 
-* Don't make MetricFu or any metrics part of the dependencies of your project
-* Works with Rails 3 and Rspec 2
-* You can now run MetricFu in any directory:
+* Don't make MetricFu or any metrics part of the dependencies of your project;
+  so you don't need to add anything to your Gemfile.
 
-	cd /path/of/your/project
-	metrical
+* You can run MetricFu in any project:
 
-* Has been preconfigured to work with Rails
-* Reek and Roodi are properly installed by metrical
-* Per project configuration in a simple <tt>.metrics</tt> file
+  $ gem install metrical
+  $ cd /path/of/your/project
+  $ metrical
 
-== Installation
+* Per project configuration can be done in a simple <tt>.metrics</tt> file in
+  the root directory of your project. In here you can configure MetricFu as
+  you normally would. Example:
 
-	gem install metrical
+  MetricFu::Configuration.run do
+    config.graph_engine = :gchart
+  end
+
+And that's all there is too it. If you have any suggestions, ideas or bug fixes,
+please drop me a line, or make a github issue.
+
+---
+
+Copyright 2010, Iain Hecker (iain@iain.nl) - Released under the MIT License.
