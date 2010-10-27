@@ -22,6 +22,19 @@ MetricFu is awesome! Metrical strives to make it a little bit easier to get work
 And that's all there is too it. If you have any suggestions, ideas or bug fixes,
 please drop me a line, or make a github issue.
 
+=== Known issue
+
+There is one issue with the current versions of metric_fu, churn and chronic, which will result in this confusing error message when trying to install metrical (or metric_fu):
+
+  ERROR:  Error installing metric_fu:
+	churn requires chronic (~> 0.2.3, runtime)
+
+To get around this, install churn first:
+
+  gem install churn metrical
+
+{Github Issue}[http://github.com/jscruggs/metric_fu/issues#issue/33]
+
 ---
 
 Copyright 2010, Iain Hecker (iain@iain.nl) - Released under the MIT License.
