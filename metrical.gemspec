@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name             = "metrical"
-  s.version          = "0.0.4"
+  s.version          = "0.0.5"
   s.summary          = "Run metric_fu without making it a project dependency"
   s.email            = "iain@iain.nl"
   s.homepage         = "http://github.com/iain/metrical/"
@@ -13,6 +13,6 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = []
   s.executables      = ["metrical"]
 
-  s.add_dependency "metric_fu", "~> 2.0.1"
+  s.add_dependency "metric_fu", "~> 2.1.1"
   s.add_dependency "activesupport"
 end
