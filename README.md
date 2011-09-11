@@ -1,0 +1,30 @@
+# Metrical
+
+MetricFu is awesome! Metrical strives to make it a little bit easier to get working.
+
+* Don't make MetricFu or any metrics part of the dependencies of your project;
+  so you don't need to add anything to your Gemfile.
+
+* You can run MetricFu in any project:
+
+      $ gem install metrical
+      $ cd /path/of/your/project
+      $ metrical
+
+* Per project configuration can be done in a simple `.metrics` file in the
+  root directory of your project. In here you can configure MetricFu as you
+  normally would. Example:
+
+      MetricFu::Configuration.run do
+        config.graph_engine = :gchart
+      end
+
+For more information on configuring your metrics, please visit the
+[MetricFu homepage](http://metric-fu.rubyforge.org/). Any configuration options
+you see there can be done in the `.metrics` file.
+
+And that's all there is too it. If you have any suggestions, ideas or bug fixes,
+please drop me a line, or make a github issue.
+
+---
+Copyright 2010-2011, [Iain Hecker](http://iain.nl) - Released under the MIT License.

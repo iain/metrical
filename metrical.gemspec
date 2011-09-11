@@ -1,19 +1,24 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "metrical/version"
+
 Gem::Specification.new do |s|
+  s.name        = "metrical"
+  s.version     = Metrical::VERSION
+  s.authors     = ["iain"]
+  s.email       = ["iain@iain.nl"]
+  s.homepage    = "https://github.com/iain/metrical"
+  s.summary     = %q{Run metric_fu without making it a project dependency}
+  s.description = %q{MetricFu is awesome! The only problem is that it's kinda obtrusive. Metrical provides a executable so you can run metric fu on any project without making changes to the project.}
 
-  s.name             = "metrical"
-  s.version          = "0.0.6"
-  s.summary          = "Run metric_fu without making it a project dependency"
-  s.email            = "iain@iain.nl"
-  s.homepage         = "http://github.com/iain/metrical/"
-  s.description      = "MetricFu is awesome! The only problem is that it's kinda obtrusive. Metrical provides a executable so you can run metric fu on any project without making changes to the project."
-  s.authors          = ["Iain Hecker"]
-  s.files            = [ "README.rdoc", 'bin/metrical' ]
-  s.has_rdoc         = true
-  s.rdoc_options     = ["--main", "README.rdoc"]
-  s.extra_rdoc_files = []
-  s.executables      = ["metrical"]
+  s.rubyforge_project = "metrical"
 
-  s.add_dependency "metric_fu", "~> 2.1.1"
-  s.add_dependency "activesupport"
-  s.add_dependency "main", "~> 4.6.0"
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
+
+  s.add_runtime_dependency "metric_fu", "~> 2.1.1"
+  s.add_runtime_dependency "activesupport"
+  s.add_runtime_dependency "main", "~> 4.6.0"
 end
