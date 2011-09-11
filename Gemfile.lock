@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    metrical (0.0.6)
+    metrical (0.0.7)
       main (~> 4.6.0)
       metric_fu (~> 2.1.1)
       rake
