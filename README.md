@@ -7,17 +7,17 @@ MetricFu is awesome! Metrical strives to make it a little bit easier to get work
 
 * You can run MetricFu in any project:
 
-      $ gem install metrical
-      $ cd /path/of/your/project
-      $ metrical
+        $ gem install metrical
+        $ cd /path/of/your/project
+        $ metrical
 
 * Per project configuration can be done in a simple `.metrics` file in the
   root directory of your project. In here you can configure MetricFu as you
   normally would. Example:
 
-      MetricFu::Configuration.run do |config|
-        config.metrics -= [ :rcov ]
-      end
+        MetricFu::Configuration.run do |config|
+          config.metrics -= [ :rcov ]
+        end
 
 For more information on configuring your metrics, please visit the
 [MetricFu homepage](http://metric-fu.rubyforge.org/). Any configuration options
