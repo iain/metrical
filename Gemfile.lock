@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     metrical (0.0.6)
-      activesupport
       main (~> 4.6.0)
       metric_fu (~> 2.1.1)
+      rake
 
 GEM
   remote: http://rubygems.org/
@@ -61,6 +61,7 @@ GEM
       i18n
       ruby-progressbar
       ruby_parser
+    rake (0.9.2)
     rcov (0.9.10)
     reek (1.2.8)
       ruby2ruby (~> 1.2)
