@@ -71,9 +71,9 @@ Metrical depends on a lot of other gems. Not all gem authors adhere to guideline
 things break. I try to fix the issues I come across inside Metrical, by making a dependency of a
 dependency a fixed dependency of Metrical. It's difficult to do this right.
 
-If you get a message like `can't activate X, already activated Y`, or something similar. Please
-report it in Github issues. Please include the entire error message and the output of `gem list` and
-the version of Ruby you are using.
+If you get a message like `can't activate X, already activated Y`, or something similar, you can
+open an issue. Please include the entire error message and the output of `gem list` and the version
+of Ruby you are using.
 
 ---
 Copyright 2010-2011, [Iain Hecker](http://iain.nl) - Released under the MIT License.
