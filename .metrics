@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+MetricFu::Configuration.run do |config|
+  config.metrics -= [ :rcov ]
+end

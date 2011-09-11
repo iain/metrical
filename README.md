@@ -15,8 +15,8 @@ MetricFu is awesome! Metrical strives to make it a little bit easier to get work
   root directory of your project. In here you can configure MetricFu as you
   normally would. Example:
 
-      MetricFu::Configuration.run do
-        config.graph_engine = :gchart
+      MetricFu::Configuration.run do |config|
+        config.metrics -= [ :rcov ]
       end
 
 For more information on configuring your metrics, please visit the
