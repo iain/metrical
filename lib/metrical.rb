@@ -14,13 +14,13 @@ module Metrical
 
   def run(argv)
     options = Options.parse(argv)
-    load_settings
+    load_settings(RUBY_VERSION)
     load_user_configuration
     run_metric_fu
     open_in_browser if options[:open]
   end
 
-  def load_settings(ruby_version = RUBY_VERSION)
+  def load_settings(ruby_version)
     load_defaults
     if ruby_version =~ /^1\.9/
       disable_rcov

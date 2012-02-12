@@ -9,7 +9,7 @@ module Metrical
 
         opts.version = Metrical::VERSION
 
-        opts.on "--[no-]open", "Automatically open report in browser" do |open|
+        opts.on "--[no-]open", "Automatically open report in browser (default: true)" do |open|
           options[:open] = open
         end
 

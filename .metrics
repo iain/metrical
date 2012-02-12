@@ -2,7 +2,3 @@
 
 # For testing that this file gets loaded
 puts "Metrics config loaded"
-
-MetricFu::Configuration.run do |config|
-  config.metrics -= [ :rcov ]
-end
