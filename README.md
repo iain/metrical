@@ -1,5 +1,7 @@
 # Metrical
 
+[![Build Status](https://secure.travis-ci.org/iain/metrical.png)](http://travis-ci.org/iain/metrical)
+
 MetricFu is awesome! Metrical strives to make it a little bit easier to get working.
 
 ## Features
