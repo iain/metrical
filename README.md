@@ -32,6 +32,10 @@ Run:
 
     metrical
 
+To get help:
+
+    metrical --help
+
 ## Configuration
 
 You can configure MetricFu in a `.metrics` file in the root of your project.
@@ -52,7 +56,7 @@ please drop me a line, or make a github issue.
 
 RCov doesn't work with Ruby 1.9. You should use something like
 [SimpleCov](https://github.com/colszowka/simplecov). Unfortunately, it hasn't been included into
-MetricFu yet. Until then, make sure to remove RCov from MetricFu, as the example above shows.
+MetricFu yet. Until then, Metrical automatically disables RCov under Ruby 1.9.
 
 ### New syntax in Ruby 1.9
 
@@ -76,6 +80,28 @@ dependency a fixed dependency of Metrical. It's difficult to do this right.
 If you get a message like `can't activate X, already activated Y`, or something similar, you can
 open an issue. Please include the entire error message and the output of `gem list` and the version
 of Ruby you are using.
+
+
+## Development
+
+Install dependencies:
+
+    gem install bundler && bundle install
+
+Run the specs:
+
+    rspec
+
+
+## Changelog
+
+Version 0.1.0 (unreleased):
+
+* Finally added tests and added metrical to Travis
+* Add option `--no-open` to stop it from opening in the browser
+* Automatically turn off RCov in Ruby 1.9
+* Depend on RCov 0.9, so installation will work under Ruby 1.9
+* Remove other dependencies, it looks like MetricFu has that covered now.
 
 ---
 Copyright 2010-2011, [Iain Hecker](http://iain.nl) - Released under the MIT License.
