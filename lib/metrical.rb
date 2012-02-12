@@ -1,4 +1,5 @@
 require "metrical/version"
+require "metrical/options"
 
 require 'rubygems'
 require 'json'
@@ -11,11 +12,12 @@ require 'active_support/core_ext'
 module Metrical
   extend self
 
-  def run(*)
+  def run(argv)
+    options = Options.parse(argv)
     load_settings
     load_user_configuration
     run_metric_fu
-    open_in_browser
+    open_in_browser if options[:open]
   end
 
   def load_settings(ruby_version = RUBY_VERSION)

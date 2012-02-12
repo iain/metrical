@@ -1,7 +1,6 @@
-require 'bundler/setup'
-require 'metrical'
+require 'spec_helper'
 
-describe Metrical do
+describe Metrical, "configuration" do
 
   it "won't use rcov under ruby 1.9" do
     Metrical.load_settings("1.9.3")

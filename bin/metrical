@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require "metrical"
-Metrical.run(*ARGV)
+Metrical.run(ARGV.dup)
