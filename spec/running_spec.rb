@@ -3,7 +3,11 @@ require 'spec_helper'
 describe Metrical, "running" do
 
   before do
-    FileUtils.rm_f("tmp/metric_fu")
+    FileUtils.rm_rf("tmp/metric_fu")
+  end
+
+  it "has a clean start" do
+    File.exist?("tmp/metric_fu").should be_false
   end
 
   it "loads the .metrics file" do
@@ -30,13 +34,8 @@ describe Metrical, "running" do
   end
 
   def metrical(command = "--no-open")
-    $cache ||= {}
-    if $cache[command]
-      $cache[command]
-    else
-      stdin, stdout, stderr = Open3.popen3("metrical #{command}")
-      $cache[command] = [ stdout.read.strip, stderr.read.strip ]
-    end
+    stdin, stdout, stderr = Open3.popen3("metrical #{command}")
+    [ stdout.read.strip, stderr.read.strip ]
   end
 
 end
