@@ -7,11 +7,11 @@ describe Metrical, "running" do
   end
 
   it "has a clean start" do
-    File.exist?("tmp/metric_fu").should be_false
+    File.should_not exist("tmp/metric_fu")
   end
 
   it "loads the .metrics file" do
-    out, err = metrical
+    out = metrical
     out.should include "Metrics config loaded"
   end
 
@@ -24,18 +24,23 @@ describe Metrical, "running" do
   end
 
   it "displays help" do
-    out, err = metrical("bundle exec metrical --help")
+    out = metrical("bundle exec metrical --help")
     out.should include "Usage: metrical [options]"
   end
 
   it "displays version" do
-    out, err = metrical("bundle exec metrical --version")
+    out = metrical("bundle exec metrical --version")
     out.should == "metrical #{Metrical::VERSION}"
   end
 
-  def metrical(command = "--no-open")
-    stdin, stdout, stderr = Open3.popen3("metrical #{command}")
-    [ stdout.read.strip, stderr.read.strip ]
+  it "errors on unknown flags" do
+    expect { metrical "--asdasdasda" }.to raise_error
+  end
+
+  def metrical(command = "--no-open --no-saikuro")
+    results = `metrical #{command} 2>&1`
+    $?.to_i.should eq(0), "The command 'metrical #{command}' failed!\n\n#{results}"
+    results.strip
   end
 
 end
