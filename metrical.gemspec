@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "metric_fu", "~> 2.1.1"
-  s.add_runtime_dependency "main", "~> 4.6.0"
-  s.add_runtime_dependency "rake"
+  s.add_runtime_dependency "rcov", "~> 0.9"
+  s.add_development_dependency "rspec", "~> 2.8"
 end

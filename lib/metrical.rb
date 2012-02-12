@@ -12,14 +12,27 @@ module Metrical
   extend self
 
   def run(*)
-    load_defaults
-    set_new_rcov_defaults
+    load_settings
     load_user_configuration
     run_metric_fu
     open_in_browser
   end
 
+  def load_settings(ruby_version = RUBY_VERSION)
+    load_defaults
+    if ruby_version =~ /^1\.9/
+      disable_rcov
+    else
+      set_new_rcov_defaults
+    end
+  end
+
   private
+
+  def disable_rcov
+    MetricFu.configuration.metrics -= [ :rcov ]
+    MetricFu.configuration.graphs -= [ :rcov ]
+  end
 
   def load_defaults
     MetricFu::Configuration.run {}
