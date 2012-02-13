@@ -1,5 +1,4 @@
 require 'metrical/options'
-require 'metrical/metrics/flay'
 
 module Metrical
 
@@ -9,7 +8,10 @@ module Metrical
 
   def self.run(options)
     fail "No metrics to run!" if !options[:run] || options[:run].empty?
-    Metrics::Flay.run(options[:flay]) if options[:run].include?(:flay)
+    options[:run].each do |metric|
+      require"metrical/metrics/#{metric}"
+      Metrics.const_get(metric.to_s.capitalize).run(options[metric])
+    end
   end
 
 end

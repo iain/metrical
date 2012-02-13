@@ -1,4 +1,6 @@
 require 'metrical'
+require 'metrical/metrics/flog'
+require 'metrical/metrics/flay'
 
 describe Metrical do
 
@@ -34,6 +36,7 @@ describe Metrical do
     end
 
     it "won't run flay when not specified" do
+      Metrical::Metrics::Flog.stub(:run)
       Metrical::Metrics::Flay.should_not_receive(:run)
       Metrical.run :run => [ :flog ]
     end
