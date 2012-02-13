@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "flay", "~> 1.4.3"
   gem.add_dependency "flog", "~> 2.5.3"
+  gem.add_dependency "churn", "~> 0.0.15"
 
   gem.add_development_dependency "rspec", "~> 2.8"
 end
