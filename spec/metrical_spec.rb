@@ -20,4 +20,24 @@ describe Metrical do
 
   end
 
+  describe ".run" do
+
+    it "needs metrics" do
+      expect { Metrical.run({}) }.to raise_error "No metrics to run!"
+      expect { Metrical.run(:run => []) }.to raise_error "No metrics to run!"
+    end
+
+    it "can execute flay" do
+      flay_options = stub "flay_options"
+      Metrical::Metrics::Flay.should_receive(:run).with(flay_options)
+      Metrical.run :run => [ :flay ], :flay => flay_options
+    end
+
+    it "won't run flay when not specified" do
+      Metrical::Metrics::Flay.should_not_receive(:run)
+      Metrical.run :run => [ :flog ]
+    end
+
+  end
+
 end
