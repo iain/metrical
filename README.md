@@ -99,9 +99,11 @@ Version 0.1.0 (unreleased):
 
 * Finally added tests and added metrical to Travis
 * Add option `--no-open` to stop it from opening in the browser
-* Automatically turn off RCov in Ruby 1.9
+* Automatically turn off RCov in Ruby 1.9.x
 * Depend on RCov 0.9, so installation will work under Ruby 1.9
 * Remove other dependencies, it looks like MetricFu has that covered now.
+* Automatically turn off Saikuro on Ruby 1.9.x
+* Add switches for every metric (run `metrical --help` to see them all)
 
 ---
 Copyright 2010-2011, [Iain Hecker](http://iain.nl) - Released under the MIT License.
