@@ -13,7 +13,16 @@ module Metrical
     end
 
     def parse!
-      opts = OptionParser.new do |opts|
+      parser.parse!(@argv)
+      {}
+    rescue OptionParser::InvalidOption => error
+      puts error.message
+      puts parser
+      exit 1
+    end
+
+    def parser
+      @parser ||= OptionParser.new do |opts|
 
         opts.banner = "Usage: metrical [options]"
 
@@ -28,7 +37,6 @@ module Metrical
         end
 
       end
-      opts.parse!(@argv)
     end
 
     def puts(*args)
