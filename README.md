@@ -24,17 +24,13 @@ loading RSpec.
 
 ## Usage
 
-Install:
+Install it:
 
     gem install metrical
 
-Run:
+And run it:
 
     metrical
-
-To get help:
-
-    metrical --help
 
 ## Configuration
 
@@ -46,6 +42,21 @@ You can configure MetricFu in a `.metrics` file in the root of your project.
 
 For more information on configuring your metrics, please visit the
 [MetricFu homepage](http://metric-fu.rubyforge.org/).
+
+You can also turn off metrics when running, for instance:
+
+    metrical --no-rcov
+
+The metrics you can turn on and off depend on the type of project you are in.
+For instance, Rails projects also have `rails_best_practices` and `stats` as
+options.
+
+Also, Metrical tries to be smart about your Ruby version. Some metrics are not
+available on Ruby 1.9 and are disabled automatically.
+
+To see which metrics are available, run:
+
+    metrical --help
 
 And that's all there is too it. If you have any suggestions, ideas or bug fixes,
 please drop me a line, or make a github issue.
