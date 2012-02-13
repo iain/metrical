@@ -2,4 +2,4 @@
 
 require 'metrical'
 
-Metrical.run(ARGV)
+Metrical.cli(ARGV.dup)
