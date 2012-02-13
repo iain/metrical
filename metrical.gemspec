@@ -16,5 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Metrical::VERSION
 
 
+  gem.add_dependency "flay", "~> 1.4.3"
+
   gem.add_development_dependency "rspec", "~> 2.8"
 end
