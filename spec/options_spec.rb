@@ -71,7 +71,7 @@ describe Metrical::Options do
       before { subject.stub(:ruby).and_return("1.9.2") }
 
       it "enables Saikuro" do
-        defaults[:metrics][:saikuro].should be_true
+        defaults[:metrics][:saikuro].should be_false
       end
 
       it "disables RCov" do
@@ -106,12 +106,18 @@ describe Metrical::Options do
       subject.parse(["--open"])[:open].should be_true
     end
 
-    it "turns saikuro off" do
-      subject.parse(["--no-saikuro"])[:metrics][:saikuro].should be_false
-    end
+    # MetricFu doesn't include Saikuro on 1.9.2 (it is broken on 1.9 anyway)
+    # https://github.com/jscruggs/metric_fu/blob/master/lib/base/configuration.rb#L12
+    unless RUBY_VERSION == "1.9.2"
 
-    it "turns saikuro on" do
-      subject.parse(["--saikuro"])[:metrics][:saikuro].should be_true
+      it "turns saikuro off" do
+        subject.parse(["--no-saikuro"])[:metrics][:saikuro].should be_false
+      end
+
+      it "turns saikuro on" do
+        subject.parse(["--saikuro"])[:metrics][:saikuro].should be_true
+      end
+
     end
 
     it "turns churn off" do

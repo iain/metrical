@@ -9,7 +9,7 @@ module Metrical
         :open => true,
         :metrics => Hash.new(true)
       }
-      defaults[:metrics][:saikuro] = version(ruby) < version("1.9.3")
+      defaults[:metrics][:saikuro] = version(ruby) < version("1.9")
       defaults[:metrics][:rcov]    = version(ruby) < version("1.9")
       defaults
     end
