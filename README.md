@@ -95,7 +95,7 @@ Run the specs:
 
 ## Changelog
 
-Version 0.1.0 (unreleased):
+Version 0.1.0:
 
 * Finally added tests and added metrical to Travis
 * Add option `--no-open` to stop it from opening in the browser
