@@ -14,34 +14,23 @@ module Metrical
 
   def run(argv)
     options = Options.parse(argv)
-    load_settings(RUBY_VERSION)
-    change_metrics(options)
+    load_defaults
+    set_new_rcov_defaults
     load_user_configuration
+    disable_metrics(options)
     run_metric_fu
     open_in_browser if options[:open]
   end
 
-  def load_settings(ruby_version)
-    load_defaults
-    if ruby_version =~ /^1\.9/
-      disable_rcov
-    else
-      set_new_rcov_defaults
-    end
-  end
-
   private
 
-  def change_metrics(options)
-    unless options[:saikuro]
-      MetricFu.configuration.metrics -= [ :saikuro ]
-      MetricFu.configuration.graphs -= [ :saikuro ]
+  def disable_metrics(options)
+    options[:metrics].each do |metric, chosen|
+      unless chosen
+        MetricFu.configuration.metrics -= [ metric ]
+        MetricFu.configuration.graphs -= [ metric ]
+      end
     end
-  end
-
-  def disable_rcov
-    MetricFu.configuration.metrics -= [ :rcov ]
-    MetricFu.configuration.graphs -= [ :rcov ]
   end
 
   def load_defaults

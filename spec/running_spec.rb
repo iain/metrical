@@ -37,7 +37,7 @@ describe Metrical, "running" do
     expect { metrical "--asdasdasda" }.to raise_error
   end
 
-  def metrical(command = "--no-open --no-saikuro")
+  def metrical(command = "--no-open")
     results = `metrical #{command} 2>&1`
     $?.to_i.should eq(0), "The command 'metrical #{command}' failed!\n\n#{results}"
     results.strip

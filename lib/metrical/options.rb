@@ -3,17 +3,45 @@ require 'optparse'
 module Metrical
   module Options
 
+    def self.defaults
+
+      defaults = {
+        :open => true,
+        :metrics => Hash.new(true)
+      }
+      defaults[:metrics][:saikuro] = version(ruby) < version("1.9.3")
+      defaults[:metrics][:rcov]    = version(ruby) < version("1.9")
+      defaults
+    end
+
+    def self.version(version)
+      Gem::Version.new(version)
+    end
+
+    def self.ruby
+      RUBY_VERSION.dup
+    end
+
+    def self.metrics
+      MetricFu.configuration.metrics.sort_by(&:to_s)
+    end
+
     def self.parse(argv)
-      options = { :open => true, :saikuro => true }
+      options = defaults.dup
+
       opts = OptionParser.new do |opts|
 
         opts.version = Metrical::VERSION
 
-        opts.on "--[no-]saikuro", "Run Saikuro (default: true)" do |saikuro|
-          options[:saikuro] = saikuro
+        metrics.each do |metric|
+
+          opts.on "--[no-]#{metric}", "Enables or disables #{metric.to_s.titleize} (default: #{options[:metrics][metric]})" do |option|
+            options[:metrics][metric] = option
+          end
+
         end
 
-        opts.on "--[no-]open", "Automatically open report in browser (default: true)" do |open|
+        opts.on "--[no-]open", "Open report in browser" do |open|
           options[:open] = open
         end
 
