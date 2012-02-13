@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'metrical'
+require 'rspec'
 
 RSpec::Matchers.define :create_file do |expected|
 
