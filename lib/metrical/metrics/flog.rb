@@ -6,7 +6,7 @@ module Metrical
 
       def self.run(options)
         flog = ::Flog.new
-        flog.flog *Array(options[:files])
+        flog.flog(*Array(options[:files]))
         report = []
         flog.each_by_score do |method, score, list|
           report << { :method => method, :score => score, :list => list }
