@@ -2,30 +2,46 @@ require "metrical/options"
 
 describe Metrical::Options do
 
-  describe ".parse" do
+  let(:out) { StringIO.new }
+  let(:config) { stub "configuration" }
 
-    let(:out) { StringIO.new }
-
-    it "prints help with --help" do
-      expect { Metrical::Options.parse(["--help"], out) }.to raise_error(SystemExit)
+  %w(-h --help).each do |opt|
+    it "prints help with #{opt}" do
+      expect { parse opt }.to raise_error(SystemExit)
       out.string.should include "Usage: metrical [options]"
     end
+  end
 
-    it "prints the version with --version" do
-      expect { Metrical::Options.parse(["--version"], out) }.to raise_error(SystemExit)
+  %w(-v --version).each do |opt|
+    it "prints the version with #{opt}" do
+      expect { parse opt }.to raise_error(SystemExit)
       out.string.should == "metrical #{Metrical::VERSION}\n"
     end
+  end
 
-    it "halts and shows help when unknown option is set" do
-      expect { Metrical::Options.parse(["--non-existing"], out) }.to raise_error(SystemExit)
-      out.string.should include "invalid option: --non-existing"
-      out.string.should include "Usage: metrical [options]"
-    end
+  it "halts and shows help when unknown option is set" do
+    expect { parse "--non-existing" }.to raise_error(SystemExit)
+    out.string.should include "invalid option: --non-existing"
+    out.string.should include "Usage: metrical [options]"
+  end
 
-    it "returns the options set" do
-      Metrical::Options.parse([], out).should be_a Hash
-    end
+  it "can disable metrics" do
+    config.should_receive(:disable_metric).with(:flog)
+    parse "--no-flog"
+  end
 
+  it "can enable metrics" do
+    config.should_receive(:enable_metric).with(:flog)
+    parse "--flog"
+  end
+
+  it "can set paths" do
+    config.should_receive(:paths=).with(["a","b"])
+    parse "--paths", "a,b"
+  end
+
+  def parse(*argv)
+    Metrical::Options.parse(argv, config, out)
   end
 
 end
