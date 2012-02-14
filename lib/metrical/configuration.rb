@@ -18,5 +18,13 @@ module Metrical
       paths.map { |path| Dir[File.join(path, "**/*.rb")] }.flatten
     end
 
+    def enable_metric(metric)
+      metrics << metric unless metrics.include? metric
+    end
+
+    def disable_metric(metric)
+      metrics.delete metric
+    end
+
   end
 end
