@@ -5,7 +5,8 @@ describe Metrical::Metrics::Churn do
   let(:result) { Metrical::Metrics::Churn.run }
 
   it "reports changes" do
-    result[:changes].size.should == `git ls-files | wc -l`.to_i
+    change = result[:changes].find { |change| change[:file_path] == "lib/metrical.rb" }
+    change[:times_changed].should be >= 5
   end
 
 end
