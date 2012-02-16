@@ -1,17 +1,14 @@
 require 'metrical/options'
+require 'metrical/runner'
+require 'metrical/reporter'
 
 module Metrical
 
   def self.cli(argv)
-    run Options.parse(argv)
-  end
-
-  def self.run(options)
-    fail "No metrics to run!" if !options[:run] || options[:run].empty?
-    options[:run].each do |metric|
-      require"metrical/metrics/#{metric}"
-      Metrics.const_get(metric.to_s.capitalize).run(options[metric])
-    end
+    configuration = Configuration.new
+    Options.parse(argv, configuration)
+    reports = Runner.run(configuration)
+    Reporter.report(reports, configuration)
   end
 
 end
