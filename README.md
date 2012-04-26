@@ -1,3 +1,10 @@
+## Warning: This gem is not being maintained anymore!
+
+I work exclusively with Ruby 1.9, and most tools included don't (fully) support it.
+If you want to take over the project, fork the project, and open an issue stating your intentions.
+
+---
+
 # Metrical
 
 [![Build Status](https://secure.travis-ci.org/iain/metrical.png)](http://travis-ci.org/iain/metrical)
@@ -5,15 +12,6 @@
 MetricFu is awesome! Metrical strives to make it a little bit easier to get working.
 
 ## Features
-
-### Metrical doesn't intrude on your project
-
-Metrical makes it easy to run MetricFu without making it a project dependency. Bundler requires
-that everything you need go inside the Gemfile. MetricFu is rather big project with a ton of
-dependencies. Including that inside your Gemfile just clutters it up.
-
-Also, MetricFu wants to be installed inside your Rakefile. With Metrical, you can configure MetricFu
-in a separate file, `.metrics` in the root of your project.
 
 ### Cleverer defaults
 
@@ -24,13 +22,17 @@ loading RSpec.
 
 ## Usage
 
-Install it:
+You're advised to install it with Bundler, because of dependency issues. Add this to your `Gemfile`:
 
-    gem install metrical
+    gem 'metrical', :require => false
+    
+Then run:
+
+    bundle install
 
 And run it:
 
-    metrical
+    bundle exec metrical
 
 ## Configuration
 
@@ -45,7 +47,7 @@ For more information on configuring your metrics, please visit the
 
 You can also turn off metrics when running, for instance:
 
-    metrical --no-rcov
+    bundle exec metrical --no-rcov
 
 The metrics you can turn on and off depend on the type of project you are in.
 For instance, Rails projects also have `rails_best_practices` and `stats` as
@@ -56,16 +58,20 @@ available on Ruby 1.9 and are disabled automatically.
 
 To see which metrics are available, run:
 
-    metrical --help
+    bundle exec metrical --help
 
 And that's all there is too it. If you have any suggestions, ideas or bug fixes,
 please drop me a line, or make a github issue.
 
 ## Known issues
 
+### General lack of support of Ruby 1.9
+
+Most tools don't handle Ruby 1.9 new syntax properly. It doesn't look like this is going to change any time soon.
+
 ### RCov and Ruby 1.9
 
-RCov doesn't work with Ruby 1.9. You should use something like
+RCov doesn't work at all with Ruby 1.9. You should use something like
 [SimpleCov](https://github.com/colszowka/simplecov). Unfortunately, it hasn't been included into
 MetricFu yet. Until then, Metrical automatically disables RCov under Ruby 1.9.
 
@@ -78,19 +84,14 @@ new syntax or exclude these metrics in your `.metrics` file.
 ### Roodi vs. Psych
 
 If you're running Ruby 1.9 with Psych as your default YAML parser (possible in 1.9.2, and the
-default in 1.9.3), you might get an error message. I have no clue what to do about it. Some help on
-this would be greatly appreciated.
+default in 1.9.3), you might get an error message. [Read this issue](https://github.com/iain/metrical/issues/15).
 
 ### Gem dependency issues
 
-Metrical depends on a lot of other gems. Not all gem authors adhere to guidelines such as
-[SemVer](http://semver.org/). This means that sometimes, when a new version of a gem is released,
-things break. I try to fix the issues I come across inside Metrical, by making a dependency of a
-dependency a fixed dependency of Metrical. It's difficult to do this right.
+Metrical depends on a lot of other gems. This means that sometimes, when a new version of a gem is released,
+Rubygems will load the wrong version of the gem, that might be incompatible.
 
-If you get a message like `can't activate X, already activated Y`, or something similar, you can
-open an issue. Please include the entire error message and the output of `gem list` and the version
-of Ruby you are using.
+If you get a message like `can't activate X, already activated Y`, or something similar, use Bundler.
 
 
 ## Development
