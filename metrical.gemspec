@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "metric_fu", "~> 4.2.1"
+  #s.add_runtime_dependency "metric_fu", "~> 4.2.1"
   s.add_runtime_dependency "rcov", "~> 0.9"
   s.add_development_dependency "rspec", "~> 2.8"
 end
