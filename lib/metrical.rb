@@ -15,7 +15,7 @@ module Metrical
   def run(argv)
     options = Options.parse(argv)
     load_defaults
-    set_new_rcov_defaults
+#    set_new_rcov_defaults
     load_user_configuration
     disable_metrics(options)
     run_metric_fu
